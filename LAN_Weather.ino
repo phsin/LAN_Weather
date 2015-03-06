@@ -10,37 +10,21 @@ byte mac[] = {0x00, 0x13, 0xCD, 0xAB, 0x44, 0x22}; //mac - адрес ethernet s
 byte ip[] = { 192, 168, 52, 99 };        // ip адрес ethernet shielda
 byte subnet[] = { 255, 255, 255, 0 }; //маска подсети
 EthernetServer server(80); //порт сервера
-int ledPin = 4; // указываем что светодиод будет управляться через 4 Pin
 String readString = String(30); //string for fetching data from address
-boolean LEDON = false; //изначальный статус светодиода - выключен
+
 // Датчики ds18b20 подключены на 2 пин
 OneWire ds(2);
 
-/*
-DallasTemperature sensors(&oneWire);
-// Адреса и имена датчиков
-DeviceAddress sensor1 = {0x28, 0xFF, 0x14, 0x5A, 0x2C, 0x04, 0x00, 0xFC};
-DeviceAddress sensor2 = {0x28, 0xFF, 0xA1, 0x3B, 0x2B, 0x04, 0x00, 0x04};
-*/
-
-// ========================СТАРТУЕМ===================================================
-// ========================Управляем св.диодом на 4-м пине============================
 void setup() {
   //запускаем Ethernet
   Ethernet.begin(mac, ip, subnet);
 
-  //устанавливаем pin 4 на выход
-  pinMode(ledPin, OUTPUT);
   //Серийный порт для отладки
   Serial.begin(9600);
   Serial.println("Port Test!"); // Тестовые строки для отображения в мониторе порта
-  Serial.println("GO!");// Тестовые строки для отображения в мониторе порта
-
-  //sensors.begin();
-
+  Serial.println("Ok");// Тестовые строки для отображения в мониторе порта
   Serial.print("Server at ");
   Serial.println(Ethernet.localIP());
-
 }
 
 // ===================================================================================
